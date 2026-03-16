@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NAAC Inspection Process — Online Universities 2025-26</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0D1117;
+  --surface:#161B22;
+  --surface2:#1C2230;
+  --border:#2D3748;
+  --accent:#E53E3E;
+  --accent2:#F6AD55;
+  --accent3:#68D391;
+  --accent4:#63B3ED;
+  --accent5:#B794F4;
+  --white:#F7FAFC;
+  --muted:#718096;
+  --text:#CBD5E0;
+  --heading:#EDF2F7;
+}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* Subtle grid background */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(99,179,237,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(99,179,237,0.03) 1px,transparent 1px);
+  background-size:40px 40px;pointer-events:none;z-index:0
+}
+
+/* HEADER */
+header{
+  position:relative;z-index:1;
+  background:linear-gradient(135deg,#0D1117 0%,#161B22 50%,#1a1f2e 100%);
+  border-bottom:1px solid var(--border);
+  padding:2.5rem 2rem 2rem;text-align:center;
+  overflow:hidden;
+}
+header::after{
+  content:'NAAC';position:absolute;right:-20px;top:50%;transform:translateY(-50%);
+  font-size:180px;font-weight:900;color:rgba(229,62,62,0.04);
+  letter-spacing:-10px;pointer-events:none;line-height:1;
+}
+.h-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(229,62,62,0.1);border:1px solid rgba(229,62,62,0.3);
+  color:#FC8181;font-size:11px;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;padding:5px 16px;border-radius:4px;margin-bottom:1.25rem;
+}
+.h-dot{width:6px;height:6px;border-radius:50%;background:#FC8181;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+header h1{font-size:clamp(22px,4vw,38px);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:0.5rem;letter-spacing:-0.5px}
+header h1 em{font-style:normal;color:#FC8181}
+header p{font-size:13px;color:var(--muted);line-height:1.7;max-width:600px;margin:0 auto}
+.h-meta{margin-top:1rem;display:flex;justify-content:center;flex-wrap:wrap;gap:16px}
+.h-badge{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:5px}
+.h-badge span{color:var(--accent3);font-weight:600}
+
+/* MAIN */
+main{max-width:1060px;margin:0 auto;padding:2rem 1.25rem 4rem;position:relative;z-index:1}
+
+/* PROGRESS STEPS */
+.steps-bar{
+  display:flex;gap:0;margin-bottom:2rem;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;overflow:hidden;flex-wrap:wrap;
+}
+.step-item{
+  flex:1;min-width:90px;padding:12px 10px;text-align:center;
+  border-right:1px solid var(--border);cursor:pointer;
+  transition:background 0.2s;position:relative;
+}
+.step-item:last-child{border-right:none}
+.step-item:hover{background:rgba(255,255,255,0.03)}
+.step-item.active{background:rgba(229,62,62,0.08)}
+.step-item.active::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:2px;background:var(--accent);
+}
+.step-num{font-size:18px;margin-bottom:3px}
+.step-label{font-size:10px;color:var(--muted);line-height:1.3;font-weight:500;letter-spacing:0.04em}
+.step-item.active .step-label{color:#FC8181}
+
+/* NAV BUTTONS */
+.nav-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1.5rem}
+@media(max-width:700px){.nav-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:400px){.nav-row{grid-template-columns:1fr}}
+.nbtn{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:13px 12px;text-align:left;cursor:pointer;
+  transition:all 0.2s;width:100%;
+}
+.nbtn:hover{border-color:#4A5568;background:var(--surface2);transform:translateY(-1px)}
+.nbtn.active{background:rgba(229,62,62,0.08);border-color:rgba(229,62,62,0.5)}
+.n-icon{font-size:18px;margin-bottom:5px;display:block}
+.n-num{font-size:9px;color:var(--accent);font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:3px}
+.n-label{font-size:11.5px;font-weight:600;color:var(--text);line-height:1.3}
+.nbtn.active .n-label{color:#FC8181}
+.ntag{
+  display:inline-block;background:rgba(104,211,145,0.15);color:#68D391;
+  font-size:9px;padding:1px 7px;border-radius:3px;margin-top:4px;
+  border:1px solid rgba(104,211,145,0.25);font-weight:600;letter-spacing:0.06em;
+}
+.rtag{background:rgba(229,62,62,0.12);color:#FC8181;border-color:rgba(229,62,62,0.3)}
+.ytag{background:rgba(246,173,85,0.12);color:#F6AD55;border-color:rgba(246,173,85,0.3)}
+
+/* CONTENT CARD */
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:12px;padding:1.75rem;display:none;
+  animation:fi 0.25s ease;
+}
+.card.show{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* CARD HEADER */
+.ch{
+  display:flex;align-items:flex-start;gap:14px;
+  padding-bottom:1.1rem;border-bottom:1px solid var(--border);margin-bottom:1.25rem;
+}
+.c-icon{
+  width:44px;height:44px;flex-shrink:0;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.ci-r{background:rgba(229,62,62,0.12);border:1px solid rgba(229,62,62,0.2)}
+.ci-b{background:rgba(99,179,237,0.1);border:1px solid rgba(99,179,237,0.2)}
+.ci-g{background:rgba(104,211,145,0.1);border:1px solid rgba(104,211,145,0.2)}
+.ci-y{background:rgba(246,173,85,0.1);border:1px solid rgba(246,173,85,0.2)}
+.ci-p{background:rgba(183,148,244,0.1);border:1px solid rgba(183,148,244,0.2)}
+.ci-t{background:rgba(129,230,217,0.1);border:1px solid rgba(129,230,217,0.2)}
+.ci-o{background:rgba(252,129,74,0.1);border:1px solid rgba(252,129,74,0.2)}
+.ci-w{background:rgba(247,250,252,0.06);border:1px solid rgba(247,250,252,0.1)}
+.c-title{font-size:17px;font-weight:700;color:var(--heading);line-height:1.3;margin-bottom:4px}
+.c-pill{
+  display:inline-block;font-size:10px;font-weight:700;
+  padding:2px 10px;border-radius:3px;text-transform:uppercase;letter-spacing:0.08em;
+}
+.pill-r{background:rgba(229,62,62,0.12);color:#FC8181;border:1px solid rgba(229,62,62,0.25)}
+.pill-b{background:rgba(99,179,237,0.1);color:#63B3ED;border:1px solid rgba(99,179,237,0.2)}
+.pill-g{background:rgba(104,211,145,0.1);color:#68D391;border:1px solid rgba(104,211,145,0.2)}
+.pill-y{background:rgba(246,173,85,0.1);color:#F6AD55;border:1px solid rgba(246,173,85,0.2)}
+.pill-p{background:rgba(183,148,244,0.1);color:#B794F4;border:1px solid rgba(183,148,244,0.2)}
+
+/* SECTION LABEL */
+.sl{
+  font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--muted);margin:1.25rem 0 0.7rem;
+  display:flex;align-items:center;gap:8px;
+}
+.sl::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* INFO ROW */
+.ir{display:flex;align-items:flex-start;gap:11px;padding:9px 0;border-bottom:1px solid rgba(45,55,72,0.5)}
+.ir:last-child{border-bottom:none}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.dr{background:#FC8181}.db{background:#63B3ED}.dg{background:#68D391}
+.dy{background:#F6AD55}.dp{background:#B794F4}.dt{background:#81E6D9}
+.itext{font-size:13.5px;color:var(--text);line-height:1.7}
+.itext b{font-weight:600;color:var(--heading)}
+
+/* TWO COL */
+.tc{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+@media(max-width:480px){.tc{grid-template-columns:1fr}}
+.mc{background:var(--surface2);border-radius:8px;padding:11px 13px;border:1px solid var(--border)}
+.ml{font-size:10px;font-weight:600;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.07em}
+.mv{font-size:13px;color:var(--heading);line-height:1.5}
+
+/* THREE COL */
+.threecol{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+@media(max-width:600px){.threecol{grid-template-columns:1fr}}
+
+/* ALERT BOXES */
+.alert{border-radius:6px;padding:12px 16px;margin:10px 0;font-size:13px;line-height:1.7;border-left:3px solid}
+.alert-r{background:rgba(229,62,62,0.07);border-color:#E53E3E;color:#FEB2B2}
+.alert-r b{color:#FC8181}
+.alert-y{background:rgba(246,173,85,0.07);border-color:#DD6B20;color:#FBD38D}
+.alert-y b{color:#F6AD55}
+.alert-g{background:rgba(104,211,145,0.07);border-color:#38A169;color:#9AE6B4}
+.alert-g b{color:#68D391}
+.alert-b{background:rgba(99,179,237,0.07);border-color:#2B6CB0;color:#BEE3F8}
+.alert-b b{color:#63B3ED}
+
+/* TAGS */
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.tag{font-size:11px;padding:4px 11px;border-radius:4px;background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+.tag.r{background:rgba(229,62,62,0.08);color:#FC8181;border-color:rgba(229,62,62,0.2)}
+.tag.g{background:rgba(104,211,145,0.08);color:#68D391;border-color:rgba(104,211,145,0.2)}
+.tag.b{background:rgba(99,179,237,0.08);color:#63B3ED;border-color:rgba(99,179,237,0.2)}
+.tag.y{background:rgba(246,173,85,0.08);color:#F6AD55;border-color:rgba(246,173,85,0.2)}
+
+/* STEP FLOW */
+.flow{display:flex;flex-direction:column;gap:0}
+.flow-item{display:flex;gap:16px;position:relative}
+.flow-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.flow-num{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;flex-shrink:0;
+}
+.fn-r{background:rgba(229,62,62,0.15);color:#FC8181;border:1px solid rgba(229,62,62,0.3)}
+.fn-b{background:rgba(99,179,237,0.12);color:#63B3ED;border:1px solid rgba(99,179,237,0.25)}
+.fn-g{background:rgba(104,211,145,0.12);color:#68D391;border:1px solid rgba(104,211,145,0.25)}
+.fn-y{background:rgba(246,173,85,0.12);color:#F6AD55;border:1px solid rgba(246,173,85,0.25)}
+.fn-p{background:rgba(183,148,244,0.12);color:#B794F4;border:1px solid rgba(183,148,244,0.25)}
+.fn-t{background:rgba(129,230,217,0.12);color:#81E6D9;border:1px solid rgba(129,230,217,0.25)}
+.flow-line{width:1px;flex:1;min-height:16px;background:var(--border);margin:4px auto}
+.flow-item:last-child .flow-line{display:none}
+.flow-body{padding:0 0 20px 0;flex:1}
+.flow-title{font-size:14px;font-weight:700;color:var(--heading);margin-bottom:4px;margin-top:6px}
+.flow-desc{font-size:13px;color:var(--text);line-height:1.7}
+.flow-desc b{color:var(--heading);font-weight:600}
+.flow-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.ftag{font-size:11px;padding:2px 9px;border-radius:3px;background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+
+/* CRITERIA GRID */
+.crit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+@media(max-width:560px){.crit-grid{grid-template-columns:1fr}}
+.crit-card{
+  background:var(--surface2);border-radius:8px;
+  padding:12px 14px;border:1px solid var(--border);
+  border-left:3px solid;
+}
+.crit-num{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px}
+.crit-title{font-size:13px;font-weight:600;color:var(--heading);margin-bottom:6px}
+.crit-note{font-size:11.5px;color:var(--muted);line-height:1.5}
+
+/* GRADE TABLE */
+.gt{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.gt th{background:rgba(255,255,255,0.04);color:var(--muted);font-weight:600;padding:9px 14px;text-align:left;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+.gt td{padding:9px 14px;border-bottom:1px solid rgba(45,55,72,0.5);color:var(--text);vertical-align:middle}
+.gt tr:last-child td{border-bottom:none}
+.grade-pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:3px}
+.g-pp{background:rgba(104,211,145,0.15);color:#68D391}
+.g-p{background:rgba(104,211,145,0.1);color:#9AE6B4}
+.g-a{background:rgba(99,179,237,0.1);color:#63B3ED}
+.g-b{background:rgba(246,173,85,0.1);color:#F6AD55}
+.g-c{background:rgba(229,62,62,0.1);color:#FC8181}
+.elig-yes{color:#68D391;font-weight:600;font-size:12px}
+.elig-no{color:#FC8181;font-weight:600;font-size:12px}
+
+/* DOC CHECKLIST */
+.doc-list{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:8px}
+@media(max-width:560px){.doc-list{grid-template-columns:1fr}}
+.doc-item{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:6px;padding:10px 12px;
+  display:flex;align-items:flex-start;gap:8px;
+}
+.doc-check{
+  width:18px;height:18px;border-radius:3px;flex-shrink:0;margin-top:1px;
+  background:rgba(104,211,145,0.12);border:1px solid rgba(104,211,145,0.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:#68D391;font-weight:700;
+}
+.doc-text{font-size:12px;color:var(--text);line-height:1.5}
+.doc-text b{color:var(--heading);font-weight:600;display:block;margin-bottom:2px}
+
+/* FOOTER */
+footer{
+  text-align:center;padding:1.5rem;
+  font-size:12px;color:var(--muted);
+  border-top:1px solid var(--border);
+  position:relative;z-index:1;
+}
+footer b{color:var(--accent2)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-eyebrow"><span class="h-dot"></span> Quality Assurance Reference</div>
+  <h1>NAAC Inspection Process<br><em>for Universities Offering Online Courses</em></h1>
+  <p>Complete step-by-step guide to NAAC Assessment & Accreditation — 2025-26 Revised Framework including AI-based evaluation, DVV, Peer Team Visit, 7 Criteria &amp; Online Programme compliance</p>
+  <div class="h-meta">
+    <div class="h-badge">Framework: <span>NAAC RAF 2025</span></div>
+    <div class="h-badge">Updated: <span>March 2026</span></div>
+    <div class="h-badge">Compiled by: <span>Dr. Naveen Bhatnagar</span></div>
+    <div class="h-badge">Authority: <span>naac.gov.in</span></div>
+  </div>
+</header>
+
+<main>
+
+  <!-- Step Progress Bar -->
+  <div class="steps-bar">
+    <div class="step-item active" onclick="stepClick(0,this)"><div class="step-num">📝</div><div class="step-label">Registration &amp; IIQA</div></div>
+    <div class="step-item" onclick="stepClick(1,this)"><div class="step-num">📄</div><div class="step-label">SSR &amp; DVV</div></div>
+    <div class="step-item" onclick="stepClick(2,this)"><div class="step-num">👥</div><div class="step-label">Peer Team Visit</div></div>
+    <div class="step-item" onclick="stepClick(3,this)"><div class="step-num">📊</div><div class="step-label">7 Criteria Online</div></div>
+    <div class="step-item" onclick="stepClick(4,this)"><div class="step-num">📋</div><div class="step-label">Documents Checklist</div></div>
+    <div class="step-item" onclick="stepClick(5,this)"><div class="step-num">🏆</div><div class="step-label">Grades &amp; ODL Impact</div></div>
+    <div class="step-item" onclick="stepClick(6,this)"><div class="step-num">🤖</div><div class="step-label">New RAF 2025</div></div>
+    <div class="step-item" onclick="stepClick(7,this)"><div class="step-num">⚠️</div><div class="step-label">Penalties &amp; Do's</div></div>
+  </div>
+
+  <!-- Nav buttons -->
+  <div class="nav-row">
+    <button class="nbtn active" onclick="show(0,this)"><span class="n-icon">📝</span><div class="n-num">Phase 01</div><div class="n-label">Registration &amp; IIQA</div></button>
+    <button class="nbtn" onclick="show(1,this)"><span class="n-icon">📄</span><div class="n-num">Phase 02</div><div class="n-label">SSR &amp; DVV Process</div></button>
+    <button class="nbtn" onclick="show(2,this)"><span class="n-icon">👥</span><div class="n-num">Phase 03</div><div class="n-label">Peer Team Visit</div></button>
+    <button class="nbtn" onclick="show(3,this)"><span class="n-icon">📊</span><div class="n-num">Phase 04</div><div class="n-label">7 Criteria — Online Focus</div></button>
+    <button class="nbtn" onclick="show(4,this)"><span class="n-icon">📋</span><div class="n-num">Phase 05</div><div class="n-label">Documents Checklist</div><div class="ntag">ONLINE SPECIFIC</div></button>
+    <button class="nbtn" onclick="show(5,this)"><span class="n-icon">🏆</span><div class="n-num">Phase 06</div><div class="n-label">Grades &amp; ODL Eligibility</div></button>
+    <button class="nbtn" onclick="show(6,this)"><span class="n-icon">🤖</span><div class="n-num">Phase 07</div><div class="n-label">New RAF 2025 — AI Framework</div><div class="ntag">NEW 2025</div></button>
+    <button class="nbtn" onclick="show(7,this)"><span class="n-icon">⚠️</span><div class="n-num">Phase 08</div><div class="n-label">Penalties &amp; Key Tips</div><div class="ntag ytag">IMPORTANT</div></button>
+  </div>
+
+  <!-- CARD 0: Registration & IIQA -->
+  <div id="card-0" class="card show">
+    <div class="ch">
+      <div class="c-icon ci-b">📝</div>
+      <div><div class="c-title">Phase 1 — Registration &amp; IIQA Submission</div><span class="c-pill pill-b">Starting Point</span></div>
+    </div>
+    <div class="alert alert-b"><b>Pre-requisite:</b> The university must have completed at least one batch of students and must have a valid AISHE code, UGC 2(f) &amp; 12(B) recognition, and valid UGC-DEB approval for its online programmes before initiating NAAC.</div>
+    <div class="flow">
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-b">1</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">Register on NAAC Portal</div><div class="flow-desc">Visit naac.gov.in → Register the institution using AISHE code. No charges for registration. Login credentials are created for the NAAC portal. Upload basic institutional information and accreditation cycle details.</div><div class="flow-tags"><span class="ftag">naac.gov.in</span><span class="ftag">AISHE Code mandatory</span><span class="ftag">Free registration</span></div></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-r">2</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">Submit IIQA — Institutional Information for Quality Assessment</div><div class="flow-desc">Fill the IIQA form on the NAAC portal with key institutional data: total programmes, total enrolment (regular + ODL + online), faculty count, infrastructure details, UGC approvals. <b>If IIQA is rejected, institution gets 2 more attempts within 1 year.</b></div><div class="flow-tags"><span class="ftag">Includes online enrolment data</span><span class="ftag">UGC-DEB recognition proof</span><span class="ftag">2 retry attempts</span></div></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-g">3</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">IQAC Formation &amp; Annual AQAR Submission</div><div class="flow-desc">The <b>IQAC (Internal Quality Assurance Cell)</b> must be formally constituted. IQAC is the backbone of NAAC preparation. It submits the <b>AQAR (Annual Quality Assurance Report)</b> every year to NAAC online. For universities with online programmes, AQAR must include ODL/Online programme data separately.</div><div class="flow-tags"><span class="ftag">IQAC = mandatory body</span><span class="ftag">Annual AQAR submission</span><span class="ftag">Includes ODL/Online metrics</span></div></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-y">4</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">Pay Accreditation Fee</div><div class="flow-desc">Fee is based on the type and size of institution. University fee ranges from Rs. 3.5 lakh to Rs. 5 lakh. Fee is forfeited if institution withdraws or is found to have submitted falsified data (deviation &gt;15%).</div><div class="flow-tags"><span class="ftag">Rs. 3.5L–5L for universities</span><span class="ftag">Non-refundable on violations</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 1: SSR & DVV -->
+  <div id="card-1" class="card">
+    <div class="ch">
+      <div class="c-icon ci-y">📄</div>
+      <div><div class="c-title">Phase 2 — SSR Preparation &amp; DVV Process</div><span class="c-pill pill-y">Core Documentation</span></div>
+    </div>
+    <div class="alert alert-y"><b>Critical:</b> 70% of the NAAC score is generated by the online system (Software Generated Score) through quantitative metrics. Only 30% is assessed by the Peer Team. DVV determines whether data is authentic — &gt;15% deviation leads to blacklisting for 1 year.</div>
+    <div class="flow">
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-y">1</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">Prepare the SSR — Self Study Report</div><div class="flow-desc">The SSR is the most critical document — a comprehensive self-assessment covering all 7 NAAC criteria. For online universities, the SSR must include a dedicated section on online/ODL programme delivery, LMS data, e-content repository, UGC-DEB approvals, and CIQA reports. <b>SSR must be submitted within 45 days of IIQA acceptance.</b></div><div class="flow-tags"><span class="ftag">All 7 criteria covered</span><span class="ftag">Separate online programme data</span><span class="ftag">PDF format mandatory</span><span class="ftag">45-day deadline</span></div></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-r">2</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">Student Satisfaction Survey (SSS)</div><div class="flow-desc">Runs parallel to DVV. <b>All students — including online and ODL learners</b> — must participate. Covers quality of teaching, learning resources, LMS usability, student support, and grievance redressal. SSS score is a key parameter in final CGPA. Online students are surveyed through the NAAC digital portal.</div><div class="flow-tags"><span class="ftag">Online students included</span><span class="ftag">Mandatory participation</span><span class="ftag">Affects CGPA directly</span></div></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-g">3</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">DVV — Data Validation &amp; Verification</div><div class="flow-desc">NAAC's software automatically validates all quantitative metrics in the SSR against supporting documents. For online universities, DVV specifically checks: <b>LMS access logs, online enrolment figures, DEB-ID registrations, proctored exam records, e-content upload timestamps, and UGC-DEB recognition validity dates.</b> Any deviation over 15% triggers blacklisting.</div><div class="flow-tags"><span class="ftag">LMS logs verified</span><span class="ftag">DEB-ID cross-checked</span><span class="ftag">Max 15% deviation allowed</span><span class="ftag">Auto-scored 70%</span></div></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-p">4</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">Pre-Qualifier Score Check</div><div class="flow-desc">After DVV, NAAC checks if the institution meets the minimum pre-qualifier score. Institutions not meeting the threshold are directed to the Re-assessment process. Pre-qualifier ensures basic quality standards are met before Peer Team involvement.</div><div class="flow-tags"><span class="ftag">Minimum threshold required</span><span class="ftag">Re-assessment if failed</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2: Peer Team Visit -->
+  <div id="card-2" class="card">
+    <div class="ch">
+      <div class="c-icon ci-g">👥</div>
+      <div><div class="c-title">Phase 3 — Peer Team Visit (Hybrid Mode for Universities)</div><span class="c-pill pill-g">On-site / Virtual Assessment</span></div>
+    </div>
+    <div class="alert alert-g"><b>2025 Update:</b> For universities, the peer visit is in <b>hybrid mode</b> — partially online and partially physical. Institutions are informed of the peer team only on the day of assessment. For offline visits, notification given just 2 days prior to avoid staged preparation.</div>
+    <div class="flow">
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-g">1</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">Peer Team Constitution</div><div class="flow-desc">NAAC appoints a peer team of 3–5 senior academicians within 3 weeks of SSR submission. Team includes subject experts relevant to the university's programmes — for online universities, at least one member with expertise in online/distance education is included.</div><div class="flow-tags"><span class="ftag">3–5 senior academicians</span><span class="ftag">ODL expert included</span><span class="ftag">Conflict of interest screened</span></div></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-b">2</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">Virtual Component — Live Video Assessment</div><div class="flow-desc">University must set up a video-camera system with GPS/location enabled. Camera must remain on throughout. Peer team virtually reviews: <b>LMS live demonstration, online class recordings, e-content repository, proctored exam system, DEB-ID portal integration, student grievance portal.</b> Camera violations lead to cancellation of entire process.</div><div class="flow-tags"><span class="ftag">GPS-enabled camera</span><span class="ftag">LMS live demo required</span><span class="ftag">Camera OFF = cancellation</span></div></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-r">3</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">Physical Campus Visit (Universities)</div><div class="flow-desc">Physical visit covers: campus infrastructure, library, laboratories, sports facilities, admin offices, hostels, and the <b>dedicated Online/ODL Centre</b>. Peer team specifically inspects the CIQA cell setup, LMS server room, e-content studio, proctoring lab, and online student support centre.</div><div class="flow-tags"><div class="ftag">CIQA cell inspection</div><div class="ftag">LMS server room</div><div class="ftag">e-Content studio</div><div class="ftag">Proctoring infrastructure</div></div></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-y">4</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">Stakeholder Interactions</div><div class="flow-desc">Peer team holds separate sessions with: <b>Vice Chancellor / Director</b>, Heads of Departments, Faculty (including online faculty), Administrative staff, Students (regular + online), Alumni, Employers/Industry partners, and Parents. Online students are connected via video call during the visit.</div><div class="flow-tags"><span class="ftag">Online students via video</span><span class="ftag">Faculty credentials verified</span><span class="ftag">Alumni feedback collected</span></div></div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-left"><div class="flow-num fn-p">5</div><div class="flow-line"></div></div>
+        <div class="flow-body"><div class="flow-title">Exit Meeting &amp; Report Submission</div><div class="flow-desc">Peer team holds an exit meeting — shares general observations (not grades). The Peer Report is sent <b>directly to NAAC</b> (not to the institution). NAAC integrates the peer report with the system-generated score to produce the final <b>Accreditation Outcome Report</b>.</div><div class="flow-tags"><span class="ftag">Report goes to NAAC directly</span><span class="ftag">Institution not given report</span><span class="ftag">4-part outcome report</span></div></div>
+      </div>
+    </div>
+    <div class="sl">4-Part Accreditation Outcome Report</div>
+    <div class="tc">
+      <div class="mc"><div class="ml">Part 1</div><div class="mv">Criterion-wise qualitative analysis — Strengths &amp; Weaknesses</div></div>
+      <div class="mc"><div class="ml">Part 2</div><div class="mv">Graphical Quality Profile — system-generated quantitative metrics (QIF)</div></div>
+      <div class="mc"><div class="ml">Part 3</div><div class="mv">Overall SWOC Analysis — Strengths, Weaknesses, Opportunities, Challenges</div></div>
+      <div class="mc"><div class="ml">Part 4</div><div class="mv">Quality Enhancement Recommendations — maximum 10 major ones</div></div>
+    </div>
+  </div>
+
+  <!-- CARD 3: 7 Criteria -->
+  <div id="card-3" class="card">
+    <div class="ch">
+      <div class="c-icon ci-p">📊</div>
+      <div><div class="c-title">Phase 4 — 7 NAAC Criteria: Online Programme Focus</div><span class="c-pill pill-p">Evaluation Framework</span></div>
+    </div>
+    <div class="alert alert-b"><b>Scoring Split:</b> 70% Software-generated (quantitative) + 30% Peer Team (qualitative). For online universities, each criterion has additional online-specific indicators that are separately evaluated.</div>
+    <div class="crit-grid">
+      <div class="crit-card" style="border-left-color:#63B3ED">
+        <div class="crit-num" style="color:#63B3ED">Criterion I</div>
+        <div class="crit-title">Curricular Aspects</div>
+        <div class="crit-note">Online: UGC-DEB approved programme list, NEP/NCrF alignment, negative list compliance, curriculum review frequency, CBCS implementation in online programmes</div>
+      </div>
+      <div class="crit-card" style="border-left-color:#68D391">
+        <div class="crit-num" style="color:#68D391">Criterion II</div>
+        <div class="crit-title">Teaching-Learning &amp; Evaluation</div>
+        <div class="crit-note">Online: LMS functionality audit, e-content quality, SLM standards (60% in-house), online pedagogy, proctored exam integrity, teacher-student interaction on LMS</div>
+      </div>
+      <div class="crit-card" style="border-left-color:#B794F4">
+        <div class="crit-num" style="color:#B794F4">Criterion III</div>
+        <div class="crit-title">Research, Innovation &amp; Extension</div>
+        <div class="crit-note">Online: Faculty research output, e-content innovation, AI/ML integration in education, publications on online pedagogy, patents related to EdTech</div>
+      </div>
+      <div class="crit-card" style="border-left-color:#F6AD55">
+        <div class="crit-num" style="color:#F6AD55">Criterion IV</div>
+        <div class="crit-title">Infrastructure &amp; Learning Resources</div>
+        <div class="crit-note">Online: LMS platform tech audit, proctoring software, server capacity, internet bandwidth, e-content studio, digital library access for online learners</div>
+      </div>
+      <div class="crit-card" style="border-left-color:#FC8181">
+        <div class="crit-num" style="color:#FC8181">Criterion V</div>
+        <div class="crit-title">Student Support &amp; Progression</div>
+        <div class="crit-note">Online: DEB-ID registration compliance, ABC credit system, online grievance portal, personal contact programmes (PCP), placement support for ODL/online students</div>
+      </div>
+      <div class="crit-card" style="border-left-color:#81E6D9">
+        <div class="crit-num" style="color:#81E6D9">Criterion VI</div>
+        <div class="crit-title">Governance &amp; Leadership</div>
+        <div class="crit-note">Online: CIQA cell functioning, UGC-DEB compliance reports, AQAR submissions, ODL cell setup, Director CDOE appointment, annual enrolment disclosure</div>
+      </div>
+      <div class="crit-card" style="border-left-color:#F687B3">
+        <div class="crit-num" style="color:#F687B3">Criterion VII</div>
+        <div class="crit-title">Institutional Values &amp; Best Practices</div>
+        <div class="crit-note">Online: Blended learning innovation, SWAYAM/NPTEL integration, AI tools in teaching, gender equity in online enrolment, environmental sustainability in digital campus</div>
+      </div>
+    </div>
+    <div class="sl">Weightage Distribution (Universities)</div>
+    <div class="threecol">
+      <div class="mc"><div class="ml">Criterion I–II</div><div class="mv">Curriculum + Teaching = 30% weight</div></div>
+      <div class="mc"><div class="ml">Criterion III</div><div class="mv">Research = 20% weight</div></div>
+      <div class="mc"><div class="ml">Criterion IV–VII</div><div class="mv">Infra + Students + Governance = 50% weight</div></div>
+    </div>
+  </div>
+
+  <!-- CARD 4: Documents -->
+  <div id="card-4" class="card">
+    <div class="ch">
+      <div class="c-icon ci-r">📋</div>
+      <div><div class="c-title">Phase 5 — Documents Checklist for Online Universities</div><span class="c-pill pill-r">Online-Specific Requirements</span></div>
+    </div>
+    <div class="alert alert-r"><b>Warning:</b> Online universities must produce additional documentation beyond regular HEIs. Missing even one document during DVV or peer team visit can lead to lower scores or re-assessment.</div>
+    <div class="sl">Mandatory Standard Documents</div>
+    <div class="doc-list">
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>AISHE Certificate</b>All India Survey on Higher Education registration proof</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>UGC 2(f) &amp; 12(B) Certificate</b>UGC recognition for grant eligibility</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>Affiliation / Establishment Letter</b>State Govt / UGC establishment notification</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>IQAC Constitution Order</b>Official IQAC formation and member list</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>Last 5 Years AQARs</b>Annual Quality Assurance Reports submitted to NAAC</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>Faculty Qualification Certificates</b>Ph.D, NET/SLET, experience letters as per UGC norms</div></div>
+    </div>
+    <div class="sl">Online / ODL Programme — Additional Documents</div>
+    <div class="doc-list">
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>UGC-DEB Recognition Certificate</b>Year-wise approval letters for each online programme</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>CIQA Annual Reports</b>Cell for Internal Quality Assurance reports for each ODL/Online programme</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>LMS Audit Report</b>Platform tech stack, uptime stats, usage analytics, and UGC compliance check</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>SLM/e-Content Repository Link</b>With % breakdown: in-house (min 60%) vs external (max 40%)</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>DEB-ID Registration Data</b>Proof of all enrolled students registered on UGC-DEB portal</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>Proctored Examination Records</b>Exam schedules, centre details, software used, violation reports</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>Programme Project Reports (PPR)</b>Detailed PPR for each online programme approved by UGC</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>Online Student Enrolment Data</b>Year-wise enrolment with category breakdowns (SC/ST/OBC/Women)</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>ABC-ID &amp; Credit Transfer Records</b>Student ABC IDs and any inter-institutional credit transfers</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>Grievance Redressal Records</b>Online learner complaints, resolution timelines, escalation records</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>Website Disclosure Compliance</b>Screenshot proof of all UGC-mandated public disclosures on website</div></div>
+      <div class="doc-item"><div class="doc-check">✓</div><div class="doc-text"><b>NAAC/NIRF Score Certificate</b>Proof of eligibility to offer ODL/Online programmes under UGC norms</div></div>
+    </div>
+  </div>
+
+  <!-- CARD 5: Grades -->
+  <div id="card-5" class="card">
+    <div class="ch">
+      <div class="c-icon ci-y">🏆</div>
+      <div><div class="c-title">Phase 6 — Grading System &amp; ODL/Online Eligibility Impact</div><span class="c-pill pill-y">Outcome &amp; Implications</span></div>
+    </div>
+    <div class="sl">NAAC Grade Scale &amp; ODL Programme Eligibility</div>
+    <table class="gt">
+      <thead><tr><th>CGPA</th><th>Grade</th><th>Descriptor</th><th>ODL Eligibility</th><th>Online Eligibility</th></tr></thead>
+      <tbody>
+        <tr><td>3.76–4.00</td><td><span class="grade-pill g-pp">A++</span></td><td>Outstanding</td><td class="elig-yes">✓ Entitled HEI</td><td class="elig-yes">✓ No prior UGC approval</td></tr>
+        <tr><td>3.51–3.75</td><td><span class="grade-pill g-p">A+</span></td><td>Excellent</td><td class="elig-yes">✓ Entitled HEI</td><td class="elig-yes">✓ No prior UGC approval</td></tr>
+        <tr><td>3.26–3.50</td><td><span class="grade-pill g-a">A</span></td><td>Very Good</td><td class="elig-yes">✓ Eligible (3.01+ norms)</td><td class="elig-yes">✓ With annual UGC renewal</td></tr>
+        <tr><td>3.01–3.25</td><td><span class="grade-pill g-a">A</span></td><td>Good</td><td class="elig-yes">✓ Eligible (3rd Amendment)</td><td style="color:#F6AD55;font-weight:600;font-size:12px">~ Annual renewal required</td></tr>
+        <tr><td>2.76–3.00</td><td><span class="grade-pill g-b">B++</span></td><td>Above Average</td><td class="elig-no">✗ Not eligible</td><td class="elig-no">✗ Not eligible</td></tr>
+        <tr><td>2.51–2.75</td><td><span class="grade-pill g-b">B+</span></td><td>Average</td><td class="elig-no">✗ Not eligible</td><td class="elig-no">✗ Not eligible</td></tr>
+        <tr><td>2.01–2.50</td><td><span class="grade-pill g-c">B</span></td><td>Satisfactory</td><td class="elig-no">✗ Not eligible</td><td class="elig-no">✗ Not eligible</td></tr>
+        <tr><td>1.51–2.00</td><td><span class="grade-pill g-c">C</span></td><td>Needs improvement</td><td class="elig-no">✗ Not eligible</td><td class="elig-no">✗ Not eligible</td></tr>
+      </tbody>
+    </table>
+    <div class="sl">What Happens After Grading</div>
+    <div class="ir"><div class="dot dg"></div><div class="itext"><b>Accreditation Valid for 5 Years:</b> NAAC accreditation is valid for 5 years from the date of declaration. University must maintain quality and reapply for Cycle 2 accreditation after 5 years.</div></div>
+    <div class="ir"><div class="dot dy"></div><div class="itext"><b>Re-assessment Option:</b> Institutions dissatisfied with grade may apply for re-assessment after minimum 1 year but before completion of 3 years. Same fee applies.</div></div>
+    <div class="ir"><div class="dot dr"></div><div class="itext"><b>Appeal Process:</b> If dissatisfied with the process or outcome, institution may file a grievance under NAAC's Grievance Redressal Guidelines within a stipulated period.</div></div>
+    <div class="ir"><div class="dot db"></div><div class="itext"><b>ODL Impact on Loss of Grade:</b> If NAAC grade falls below 3.01 at re-accreditation, the university must immediately discontinue new admissions to ODL/Online programmes and inform UGC-DEB. Existing students complete their programmes.</div></div>
+  </div>
+
+  <!-- CARD 6: RAF 2025 -->
+  <div id="card-6" class="card">
+    <div class="ch">
+      <div class="c-icon ci-r">🤖</div>
+      <div><div class="c-title">Phase 7 — New Revised Accreditation Framework (RAF) 2025</div><span class="c-pill pill-r">AI-Based Revolution</span></div>
+    </div>
+    <div class="alert alert-r"><b>Major Change:</b> NAAC is rolling out a revolutionary AI-driven accreditation framework from August 2025. Physical peer team visits are being eliminated for basic accreditation. This fundamentally changes how online universities are assessed.</div>
+    <div class="sl">Two-Tier New System</div>
+    <div class="tc">
+      <div class="mc"><div class="ml">Tier A — Basic Accreditation</div><div class="mv" style="color:#63B3ED">Quick, document-driven, AI-based. Binary result: Accredited / Not Accredited. No physical visit. Credibility score starts at 0.5.</div></div>
+      <div class="mc"><div class="ml">Tier B — MBGL (Maturity-Based Graded Levels)</div><div class="mv" style="color:#68D391">Advanced scoring from Level 1 to Level 5. Optional. Offers prestige and policy benefits. Physical/hybrid visit may apply.</div></div>
+    </div>
+    <div class="sl">Key Changes Under RAF 2025</div>
+    <div class="ir"><div class="dot dr"></div><div class="itext"><b>No Physical Visits for Basic Tier:</b> Evaluation based on document verification, live video interactions, and AI-based scoring. Institutions start with a credibility score of 0.5, adjustable by stakeholder panels.</div></div>
+    <div class="ir"><div class="dot db"></div><div class="itext"><b>Hybrid for Universities:</b> Universities are assessed in hybrid mode. Peer team informed only on the day of assessment. Offline visit notification given just 2 days prior to prevent staged preparation.</div></div>
+    <div class="ir"><div class="dot dg"></div><div class="itext"><b>AI Scoring:</b> AI analyses SSR data, cross-references with national databases (AISHE, UGC, NIRF), and generates automated quality scores. Anomalies are flagged for human review.</div></div>
+    <div class="ir"><div class="dot dy"></div><div class="itext"><b>Simplified Grades:</b> Complex grades like B++, A+ replaced with straightforward levels (for Tier A). MBGL Levels 1–5 replace the old A/B/C grade spectrum for institutions opting for Tier B.</div></div>
+    <div class="ir"><div class="dot dp"></div><div class="itext"><b>Transparency:</b> NAAC coverage target is 90% of all HEIs by 2030 (currently only 18%). Colleges without NAAC may be barred from student intake, funding, and UGC benefits in the future.</div></div>
+    <div class="ir"><div class="dot dr"></div><div class="itext"><b>False Documentation = 3-Year Ban:</b> Under RAF 2025, false documentation leads to a 3-year ban from NAAC eligibility — stricter than the earlier 1-year blacklisting.</div></div>
+    <div class="sl">What Online Universities Must Do Under RAF 2025</div>
+    <div class="tags">
+      <span class="tag g">Real-time LMS data feeds</span>
+      <span class="tag g">AI-ready SSR format</span>
+      <span class="tag g">Live video infrastructure</span>
+      <span class="tag g">GPS-enabled campus cameras</span>
+      <span class="tag b">IQAC digitised records</span>
+      <span class="tag b">DEB-ID linked databases</span>
+      <span class="tag b">Automated AQAR generation</span>
+      <span class="tag y">Stakeholder feedback portals</span>
+      <span class="tag y">Online student access panels</span>
+    </div>
+  </div>
+
+  <!-- CARD 7: Penalties & Tips -->
+  <div id="card-7" class="card">
+    <div class="ch">
+      <div class="c-icon ci-o">⚠️</div>
+      <div><div class="c-title">Phase 8 — Penalties, Violations &amp; Key Preparation Tips</div><span class="c-pill pill-y">Critical Guidance</span></div>
+    </div>
+    <div class="sl">Penalties &amp; Violations</div>
+    <div class="ir"><div class="dot dr"></div><div class="itext"><b>Data Deviation &gt; 15%:</b> Institution is <b>blacklisted for 1 year</b> (3 years under RAF 2025). Accreditation fee is forfeited. Must reapply after the ban period.</div></div>
+    <div class="ir"><div class="dot dr"></div><div class="itext"><b>Camera Off During Virtual Visit:</b> Entire accreditation process is cancelled. Peer team members involved are removed from the NAAC assessor database.</div></div>
+    <div class="ir"><div class="dot dr"></div><div class="itext"><b>False Documentation:</b> 3-year ban under RAF 2025. UGC and NAAC jointly investigate. ODL/Online programme recognition may also be suspended by UGC-DEB.</div></div>
+    <div class="ir"><div class="dot dy"></div><div class="itext"><b>IQAC Non-functioning:</b> Significant score reduction across all criteria. Governance criterion (Criterion VI) score drops sharply. CIQA also assessed as non-functional.</div></div>
+    <div class="ir"><div class="dot dy"></div><div class="itext"><b>Missing UGC-DEB Approval for Online Programmes:</b> Online programmes listed without valid DEB approval are disqualified from counting in enrolment data — directly reducing CGPA.</div></div>
+    <div class="sl">10 Key Preparation Tips for Online Universities</div>
+    <div class="flow">
+      <div class="flow-item"><div class="flow-left"><div class="flow-num fn-g">1</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-title">Keep UGC-DEB Recognition Current</div><div class="flow-desc">Renew UGC-DEB approval every year before NAAC process begins. Lapsed approvals disqualify online enrolment data from being counted.</div></div></div>
+      <div class="flow-item"><div class="flow-left"><div class="flow-num fn-g">2</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-title">Activate and Strengthen CIQA</div><div class="flow-desc">Constitute the CIQA with a formal order. Hold quarterly CIQA meetings. Maintain minutes, action-taken reports, and annual CIQA reports for each online programme.</div></div></div>
+      <div class="flow-item"><div class="flow-left"><div class="flow-num fn-b">3</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-title">Maintain Live LMS Data</div><div class="flow-desc">Ensure LMS access logs, course completion data, and student interaction records are exportable in real time. NAAC DVV may request raw data exports.</div></div></div>
+      <div class="flow-item"><div class="flow-left"><div class="flow-num fn-b">4</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-title">Ensure 60% SLM is In-House</div><div class="flow-desc">Document every piece of e-content with creator's name, department, and date of upload. Maintain a content audit trail showing the 60/40 split clearly.</div></div></div>
+      <div class="flow-item"><div class="flow-left"><div class="flow-num fn-y">5</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-title">Register All Students on DEB Portal</div><div class="flow-desc">Every online/ODL student must have a valid DEB-ID linked to ABC-ID. Unregistered students cannot be counted in enrolment data during NAAC assessment.</div></div></div>
+      <div class="flow-item"><div class="flow-left"><div class="flow-num fn-y">6</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-title">Update Website Disclosures</div><div class="flow-desc">Display programme recognition status, enrolment data, SLM links, exam centres, LSC details, and grievance contact on the institutional website. NAAC peer team checks this on Day 1.</div></div></div>
+      <div class="flow-item"><div class="flow-left"><div class="flow-num fn-p">7</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-title">Conduct Mock Peer Team Visit</div><div class="flow-desc">Simulate the peer visit 3–6 months before. Test the GPS camera system, LMS live demo, virtual meeting setup, and all document readiness for online-specific queries.</div></div></div>
+      <div class="flow-item"><div class="flow-left"><div class="flow-num fn-p">8</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-title">Prepare Online Students for SSS</div><div class="flow-desc">Brief online students about the Student Satisfaction Survey. Their feedback on LMS quality, faculty interaction, and support services directly affects the NAAC CGPA.</div></div></div>
+      <div class="flow-item"><div class="flow-left"><div class="flow-num fn-r">9</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-title">Publish Faculty Research &amp; Publications</div><div class="flow-desc">Criterion III (Research) carries 20% weight. Ensure all faculty publications — especially in online pedagogy, EdTech, or AI in education — are uploaded with DOI links on the SSR.</div></div></div>
+      <div class="flow-item"><div class="flow-left"><div class="flow-num fn-r">10</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-title">Integrate SWAYAM / NPTEL</div><div class="flow-desc">Universities offering online programmes score higher under Criterion VII (Innovation) if they have integrated SWAYAM/NPTEL credit transfer, MOOC certifications, or AI-based learning tools in their curriculum.</div></div></div>
+    </div>
+  </div>
+
+</main>
+
+<footer>&copy; 2026 &nbsp;<b>Dr. Naveen Bhatnagar</b> &nbsp;|&nbsp; NAAC Inspection Process Dashboard — Online Universities &nbsp;|&nbsp; Source: naac.gov.in | UGC-DEB</footer>
+
+<script>
+function show(idx,btn){
+  document.querySelectorAll('.card').forEach(function(c){c.classList.remove('show')});
+  document.querySelectorAll('.nbtn').forEach(function(b){b.classList.remove('active')});
+  document.getElementById('card-'+idx).classList.add('show');
+  btn.classList.add('active');
+  document.querySelectorAll('.step-item').forEach(function(s,i){s.classList.toggle('active',i===idx)});
+  window.scrollTo({top:document.getElementById('card-'+idx).offsetTop-20,behavior:'smooth'});
+}
+function stepClick(idx,el){
+  var btns=document.querySelectorAll('.nbtn');
+  if(btns[idx]) btns[idx].click();
+}
+</script>
+</body>
+</html>
